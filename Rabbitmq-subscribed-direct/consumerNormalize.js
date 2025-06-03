@@ -10,7 +10,7 @@ async function recvMail(){
 
         channel.consume("send_mail_to_user", (message) => {
             if(message) {
-                console.log("message from normal user", message);
+                console.log("message from normal user", JSON.parse(message.content));
                 channel.ack(message);
             }
         })
