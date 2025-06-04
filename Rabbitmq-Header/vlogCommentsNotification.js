@@ -19,10 +19,12 @@ const vlogCommentsNotification = async () => {
                 console.log("New vlog is uploaded", message.content.toString());
                 channel.ack(message);
             }
-        })
+        });
 
     } catch (error) {
-        console.error(error)
+
+        console.error(error);
+
     }
 }
 
