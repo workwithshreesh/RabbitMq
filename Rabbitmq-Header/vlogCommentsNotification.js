@@ -2,7 +2,7 @@ const amqp = require("amqplib");
 
 const vlogCommentsNotification = async () => {
     try {
-
+        
         const connection = await amqp.connect("amqp://localhost");
         const channel = await connection.createChannel();
 
@@ -22,9 +22,7 @@ const vlogCommentsNotification = async () => {
         });
 
     } catch (error) {
-
         console.error(error);
-
     }
 }
 
