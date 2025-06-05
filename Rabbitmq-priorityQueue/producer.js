@@ -13,7 +13,7 @@ const sendMessage = async () => {
         await channel.assertExchange(exchange, "direct", { durable: true });
         await channel.assertQueue(queue, {
             durable: true,
-            arguments: {"X-max-priority": 10 }
+            arguments: { "x-max-priority": 10 }
         });
 
         await channel.bindQueue(queue, exchange, routingKey);
@@ -34,10 +34,18 @@ const sendMessage = async () => {
         ];
 
         data.map((msg) => {
-            channel.publish(exchange, )
-        })
+            channel.publish(exchange, routingKey, Buffer.from(msg.msg), { priority: msg.priority });
+        });
 
-    } catch (error){
+        console.log('All sent message');
 
+        setTimeout(() => {
+            connection.close();
+        }, 500)
+
+    } catch (error) {
+        console.error(error);
     }
 }
+
+sendMessage();
